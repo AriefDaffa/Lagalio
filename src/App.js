@@ -1,25 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import data from './data/single-sample';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	// const spotifyKey = process.env.SPOTIFY_CLIENT_ID;
+	console.log(data);
+
+	return (
+		<>
+			<h1 class="title">List Albums</h1>
+			<div className="card">
+				<div className="card-image">
+					<img className="image" src={data.album.images[0].url} alt="" />
+				</div>
+				<div className="card-body">
+					<div>
+						<div className="card-title">{data.album.name}</div>
+						<div className="card-subtitle">{data.artists[0].name}</div>
+					</div>
+					<button>Select</button>
+				</div>
+			</div>
+		</>
+	);
 }
 
 export default App;
