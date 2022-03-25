@@ -1,4 +1,5 @@
 import './App.css';
+import { Card, Header } from './components';
 import data from './data/single-sample';
 
 function App() {
@@ -7,19 +8,8 @@ function App() {
 
 	return (
 		<>
-			<h1 class="title">List Albums</h1>
-			<div className="card">
-				<div className="card-image">
-					<img className="image" src={data.album.images[0].url} alt="" />
-				</div>
-				<div className="card-body">
-					<div>
-						<div className="card-title">{data.album.name}</div>
-						<div className="card-subtitle">{data.artists[0].name}</div>
-					</div>
-					<button>Select</button>
-				</div>
-			</div>
+			<Header title="List Albums" />
+			<Card data={data} />
 		</>
 	);
 }
