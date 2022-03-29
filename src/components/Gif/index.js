@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Gif = ({ gif }) => {
+const Gif = ({ url, title }) => {
 	return (
 		<div style={{ padding: '16px 0' }}>
-			<div>{gif.title}</div>
-			<img src={gif.url} alt="" />
+			<div>{title}</div>
+			<img src={url} alt="" />
 		</div>
 	);
 };
