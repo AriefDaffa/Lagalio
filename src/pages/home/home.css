@@ -1,0 +1,42 @@
+.form {
+	display: flex;
+	justify-content: center;
+	padding: 24px 0;
+}
+
+.text-field {
+	width: 100%;
+	max-width: 300px;
+	padding: 8px 16px;
+	margin: 0 8px;
+	outline: none;
+	border: 1px solid #dadada;
+	border-radius: 4px;
+}
+
+.submit-button {
+	background: none;
+	padding: 0 8px;
+	margin-right: 8px;
+	color: white;
+	border: 1px solid #dadada;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	border-radius: 4px;
+}
+
+.submit-button:hover {
+	cursor: pointer;
+	background-color: #dadada;
+	color: black;
+	transition: all 0.2s;
+}
+
+.item-container {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	height: 100%;
+	min-height: 100vh;
+}

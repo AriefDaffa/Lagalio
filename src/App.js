@@ -1,7 +1,8 @@
-import './App.css';
-import { Card, CardSingle, Header } from './components';
-import data from './data/all-sample';
-import dataSingle from './data/single-sample';
+// import './App.css';
+import { Home } from './pages';
+// import { Card, CardSingle, Header } from './components';
+// import data from './data/all-sample';
+// import dataSingle from './data/single-sample';
 
 function App() {
 	// const spotifyKey = process.env.SPOTIFY_CLIENT_ID;
@@ -9,12 +10,13 @@ function App() {
 
 	return (
 		<>
-			<Header title="Album" />
+			{/* <Header title="Album" />
 			<CardSingle data={dataSingle} />
 			<Header title="List Tracks" />
 			{data.map((data, id) => (
 				<Card data={data} key={id} />
-			))}
+			))} */}
+			<Home />
 		</>
 	);
 }

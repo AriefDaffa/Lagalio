@@ -1,0 +1,36 @@
+.table-container {
+	padding: 8px;
+}
+
+table {
+	width: 100%;
+	text-align: center;
+}
+
+th {
+	border-bottom: 1px solid #dadada;
+	text-align: center;
+}
+
+table tr td {
+	padding: 8px 0;
+}
+
+.title-content {
+	display: flex;
+	padding: 0 16px;
+}
+
+.title-content img {
+	width: 50px;
+	height: 50px;
+}
+
+.song-title {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0 12px;
+	width: 100%;
+	text-align: left;
+}
