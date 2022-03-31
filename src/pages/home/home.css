@@ -40,3 +40,23 @@
 	height: 100%;
 	min-height: 100vh;
 }
+
+.disini {
+	color: inherit;
+}
+
+.button {
+	padding: 8px 16px;
+	border: 1px solid #dadada;
+	min-width: 100px;
+	border-radius: 4px;
+	margin: 20px auto;
+	text-align: center;
+}
+
+.button:hover {
+	cursor: pointer;
+	background-color: #dadada;
+	color: black;
+	transition: all 0.2s ease;
+}

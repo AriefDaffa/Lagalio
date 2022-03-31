@@ -1,85 +1,103 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Header, Login, Table } from '../../components';
 import './home.css';
 
-class Home extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			value: '',
-			accessToken: window.location.hash
-				.substring(1, window.location.hash.length - 1)
-				.split('&')[0]
-				.split('=')[1],
-			result: [],
-		};
-	}
+const Home = () => {
+	const [value, setValue] = useState('');
+	const [expiredToken, setExpiredToken] = useState(false);
+	const [accessToken] = useState(
+		window.location.hash
+			.substring(1, window.location.hash.length - 1)
+			.split('&')[0]
+			.split('=')[1]
+	);
+	const [result, setResult] = useState([]);
 
-	handleChange = (e) => {
-		this.setState({ value: e.target.value });
-	};
-
-	// fungsi dibawah digunakan untuk mendapatkan
-	// parameter dari hash yang ada pada URL
-	getHashParams = () => {
-		var hashParams = {};
-		var e,
-			r = /([^&;=]+)=?([^&;]*)/g,
-			q = window.location.hash.substring(1);
-		while ((e = r.exec(q))) {
-			hashParams[e[1]] = decodeURIComponent(e[2]);
-		}
-		return hashParams;
-	};
-
-	handleSubmit = (e) => {
+	const handleChange = (e) => {
 		e.preventDefault();
-		let query = this.state.value;
-		let url = `https://api.spotify.com/v1/search?type=track&limit=10&q=${query}`;
+		setValue(e.target.value);
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		let url = `https://api.spotify.com/v1/search?type=track&limit=10&q=${value}`;
 
 		fetch(url, {
 			headers: {
-				Authorization: 'Bearer ' + this.state.accessToken,
+				Authorization: 'Bearer ' + accessToken,
 			},
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				this.setState({ result: res.tracks.items });
-				console.log(this.state.result);
+				if (typeof res.error === 'object') {
+					setExpiredToken(true);
+				} else {
+					setResult(res.tracks.items);
+				}
 			});
 	};
 
-	render() {
-		return (
-			<Container>
-				<div className="item-container">
-					{this.state.accessToken ? (
-						<>
-							<Header size="title">Selamat Datang! 😆</Header>
-							<Header size="center">Mau cari lagu apa nih?</Header>
-							<form className="form" onSubmit={this.handleSubmit}>
-								<input
-									type="text"
-									value={this.state.value}
-									onChange={this.handleChange}
-									className="text-field"
-								/>
-								<input type="submit" className='submit-button'/>
-							</form>
-							{!this.state.result.length ? null : (
-								<>
-									<Header size="title">List Track</Header>
-									<Table data={this.state.result} />
-								</>
-							)}
-						</>
-					) : (
-						<Login />
-					)}
-				</div>
-			</Container>
-		);
-	}
-}
+	return (
+		<Container>
+			<div className="item-container">
+				{accessToken ? (
+					<>
+						{expiredToken ? (
+							<>
+								<Header size="title">Mohon Maaf! 😔</Header>
+								<Header size="center">
+									token yang kamu gunakan sudah kadaluarsa
+								</Header>
+								<Header size="center">
+									Tapi jangan panik, klik tombol dibawah untuk kembali ke
+									halaman login
+								</Header>
+								<div onClick={() => (window.location = '/')} className="button">
+									Kembali
+								</div>
+							</>
+						) : (
+							<>
+								<Header size="title">Selamat Datang! 😆</Header>
+								<Header size="center">Mau cari lagu apa nih?</Header>
+								<form className="form" onSubmit={(e) => handleSubmit(e)}>
+									<input
+										type="text"
+										value={value}
+										onChange={(e) => handleChange(e)}
+										className="text-field"
+									/>
+									<input type="submit" className="submit-button" />
+								</form>
+							</>
+						)}
+						{!result.length ? null : (
+							<>
+								<Header size="title">List Track</Header>
+								<Table data={result} />
+							</>
+						)}
+						{/* {expiredToken ? (
+							<>
+								<Header size="center">
+									Mohon maaf, token yang kamu gunakan sudah kadaluarsa 😔
+								</Header>
+								<Header size="center">
+									Tapi jangan panik, klik{' '}
+									<a href="/" className="anchor">
+										disini
+									</a>{' '}
+									untuk kembali ke halaman login
+								</Header>
+							</>
+						) : null} */}
+					</>
+				) : (
+					<Login />
+				)}
+			</div>
+		</Container>
+	);
+};
 
 export default Home;

@@ -34,3 +34,37 @@ table tr td {
 	width: 100%;
 	text-align: left;
 }
+
+.button-container {
+	padding: 0px 8px;
+}
+
+.button-container button {
+	outline: none;
+	background: none;
+	padding: 8px 0px;
+	color: white;
+	border-radius: 4px;
+	width: 100%;
+}
+
+td button:hover {
+	cursor: pointer;
+}
+
+.deselect {
+	border: 1px solid #fa4f4f;
+}
+
+.deselect:hover {
+	background-color: #fa4f4f;
+}
+
+.select {
+	border: 1px solid #5dfa4f;
+}
+
+.select:hover {
+	background-color: #5dfa4f;
+	color: black;
+}
