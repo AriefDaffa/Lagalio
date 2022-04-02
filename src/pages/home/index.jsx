@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SearchBar } from '../../components';
 import Gif from '../../components/Gif';
 
 const Home = () => {
@@ -27,11 +28,7 @@ const Home = () => {
 	return (
 		<>
 			<form onSubmit={handleSubmit}>
-				<input
-					type="text"
-					value={searchQuery}
-					onChange={(e) => handleChange(e)}
-				/>
+				<SearchBar searchQuery={searchQuery} handleChange={handleChange} />
 				<input type="submit" />
 			</form>
 
