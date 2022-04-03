@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import TableBody from '../../atomic/table-body';
 import './table.css';
 
-const Table = ({ data }) => {
-	const [selected, setSelected] = useState([]);
-
+const Table = ({ data, selected, setSelected }) => {
 	const handleSelect = (uri) => {
 		setSelected([...selected, uri]);
 	};

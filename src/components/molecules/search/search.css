@@ -1,0 +1,16 @@
+.form {
+	display: flex;
+	justify-content: center;
+	padding-top: 24px;
+}
+
+.error{
+    text-align: center;
+    color: rgb(241, 69, 69);
+    border-radius: 4px;
+    padding-top: 12px;
+}
+
+.search-container{
+    margin-top: 40px;
+}

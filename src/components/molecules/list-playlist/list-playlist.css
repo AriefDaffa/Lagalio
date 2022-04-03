@@ -1,0 +1,65 @@
+.list-playlist-container{
+    margin-top: 50px;
+    min-height: 80vh;
+}
+
+.card-container{
+    display: flex;
+    justify-content: center;
+    margin: 16px;
+}
+
+.playlist-card{
+    border: 1px solid #dadada;
+    display: flex;
+    padding: 16px;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.card-image{
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    padding-left: 16px;
+    justify-content: flex-end;
+}
+
+.card-title{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.card-content{
+    font-weight: 300;
+}
+
+.play-button-container{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.play-button{
+    border: 1px solid #dadada;
+    width: fit-content;
+    padding: 2px 20px;
+    border-radius: 10px;
+}
+
+.author{
+    font-weight: bold;
+}
+
+.flex{
+    display: flex;
+}
+
+.dot{
+    padding: 0 4px;
+}
