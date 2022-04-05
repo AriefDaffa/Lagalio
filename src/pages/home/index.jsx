@@ -1,30 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Container, CreatePlaylist, Expired, Login } from '../../components';
 import './home.css';
 
 const Home = () => {
-	const [expiredToken, setExpiredToken] = useState(false);
-	const [accessToken] = useState(
-		window.location.hash
-			.substring(1, window.location.hash.length - 1)
-			.split('&')[0]
-			.split('=')[1]
-	);
+	//get token value
+	const value = useSelector((state) => state.token);
+	console.log(value);
+
+	// useEffect(() => {
+	// 	// remove token pada url
+	// 	window.history.replaceState({}, document.title, '/');
+	// }, []);
 
 	return (
 		<Container>
 			<div className="item-container">
-				{accessToken ? (
-					<>
-						{expiredToken ? (
-							<Expired />
-						) : (
-							<CreatePlaylist
-								setExpiredToken={setExpiredToken}
-								accessToken={accessToken}
-							/>
-						)}
-					</>
+				{value.token ? (
+					<>{value.expiredToken ? <Expired /> : <CreatePlaylist />}</>
 				) : (
 					<Login />
 				)}

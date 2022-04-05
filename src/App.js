@@ -1,23 +1,12 @@
-// import './App.css';
+import { Provider } from 'react-redux';
 import { Home } from './pages';
-// import { Card, CardSingle, Header } from './components';
-// import data from './data/all-sample';
-// import dataSingle from './data/single-sample';
+import store from './redux/store';
 
 function App() {
-	// const spotifyKey = process.env.SPOTIFY_CLIENT_ID;
-	// console.log(data);
-
 	return (
-		<>
-			{/* <Header title="Album" />
-			<CardSingle data={dataSingle} />
-			<Header title="List Tracks" />
-			{data.map((data, id) => (
-				<Card data={data} key={id} />
-			))} */}
+		<Provider store={store}>
 			<Home />
-		</>
+		</Provider>
 	);
 }
 

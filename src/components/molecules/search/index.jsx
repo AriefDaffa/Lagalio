@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetToken } from '../../../redux/slice/token-slice';
 import Header from '../../atomic/header';
 import './search.css';
 
-const Search = ({
-	setExpiredToken,
-	setResult,
-	accessToken,
-	setValue,
-	value,
-}) => {
+const Search = ({ setResult, setValue, value }) => {
 	const [message, setMessage] = useState('');
+	const dispatch = useDispatch();
+	const token = useSelector((state) => state.token.token);
 
 	const handleChange = (e) => {
 		setValue(e.target.value);
@@ -22,14 +20,15 @@ const Search = ({
 
 			fetch(url, {
 				headers: {
-					Authorization: 'Bearer ' + accessToken,
+					Authorization: 'Bearer ' + token,
 				},
 			})
 				.then((res) => res.json())
 				.then((res) => {
 					setMessage('');
 					if (typeof res.error === 'object') {
-						setExpiredToken(true);
+						// setExpiredToken(true);
+						dispatch(resetToken(true));
 					} else {
 						setResult(res.tracks.items);
 					}
@@ -40,18 +39,14 @@ const Search = ({
 	};
 	return (
 		<div className="search-container">
-			<Header size="title">Selamat Datang!</Header>
-			<Header size="center">Bikin playlist yuk!</Header>
-			<Header size="center">
-				Pertama, pilih lagu yang kamu inginkan menggunakan fitur search dibawah
-				🔎
-			</Header>
+			<Header size="title">Search Tracks</Header>
 			<form className="form" onSubmit={(e) => handleSubmit(e)}>
 				<input
 					type="text"
 					value={value}
 					onChange={(e) => handleChange(e)}
 					className="text-field"
+					placeholder="Search Tracks"
 				/>
 				<input type="submit" className="submit-button" value="Search" />
 			</form>

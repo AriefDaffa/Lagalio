@@ -5,19 +5,19 @@
 }
 
 .forms{
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .label-input-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 2px dotted #dadada;
+    /* border: 2px dotted #dadada; */
     border-radius: 4px;
     padding: 16px;
     width: 100%;
     max-width: 500px;
-    margin: 20px 0;
+    /* margin: 20px 0; */
 }
 
 .label-input-container .input{

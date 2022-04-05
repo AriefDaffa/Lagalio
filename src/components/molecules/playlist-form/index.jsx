@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Header from '../../atomic/header';
 import './playlist-form.css';
 
-const PlaylistForm = ({
-	playlistData,
-	setPlaylistData,
-	accessToken,
-	selected,
-}) => {
+const PlaylistForm = ({ playlistData, setPlaylistData, selected }) => {
 	const [message, setMessage] = useState('');
+	const token = useSelector((state) => state.token.token);
 
 	const handleChange = (e) => {
 		const { id, value } = e.target;
@@ -24,7 +21,7 @@ const PlaylistForm = ({
 			if (selected.length) {
 				let url = `https://api.spotify.com/v1`;
 				const header = {
-					Authorization: 'Bearer ' + accessToken,
+					Authorization: 'Bearer ' + token,
 				};
 
 				const result = fetch(`${url}/me`, {
@@ -69,17 +66,19 @@ const PlaylistForm = ({
 
 	return (
 		<form onSubmit={(e) => handleSubmit(e)} className="forms">
+			<Header size="title">Create Playlist</Header>
 			<Header size="center">
-				Selanjutnya, masukkan data playlist yang mau kamu buat dibawah yaa 😆
+				masukkan data playlist yang mau kamu buat dibawah
 			</Header>
 			<div className="playlist-form">
 				<div className="label-input-container">
-					<Header size="title">Create Playlist</Header>
+					{/* <Header size="title">Create Playlist</Header> */}
 					<label htmlFor="title">Title </label>
 					<input
 						id="title"
 						type="text"
 						className="input"
+						placeholder="Insert Title"
 						value={playlistData.title}
 						onChange={(e) => handleChange(e)}
 					/>
@@ -88,6 +87,7 @@ const PlaylistForm = ({
 					<textarea
 						id="description"
 						type="text"
+						placeholder="Insert Description"
 						value={playlistData.description}
 						className="input description"
 						onChange={(e) => handleChange(e)}

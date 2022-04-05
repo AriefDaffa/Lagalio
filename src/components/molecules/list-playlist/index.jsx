@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetToken } from '../../../redux/slice/token-slice';
 import Header from '../../atomic/header';
 import './list-playlist.css';
 
-const ListPlaylist = ({ accessToken, setExpiredToken }) => {
+const ListPlaylist = () => {
 	const [playlist, setPlaylist] = useState([]);
+	const dispatch = useDispatch();
+	const token = useSelector(state => state.token.token);
 
 	useEffect(() => {
 		let url = `https://api.spotify.com/v1`;
 		const header = {
-			Authorization: 'Bearer ' + accessToken,
+			Authorization: 'Bearer ' + token,
 		};
 		fetch(`${url}/me/playlists`, {
 			headers: header,
@@ -16,7 +20,8 @@ const ListPlaylist = ({ accessToken, setExpiredToken }) => {
 			.then((res) => res.json())
 			.then((res) => {
 				if (typeof res.error === 'object') {
-					setExpiredToken(true);
+					// setExpiredToken(true);
+					dispatch(resetToken(true));
 				} else {
 					setPlaylist(res);
 				}

@@ -1,7 +1,6 @@
 .form {
 	display: flex;
 	justify-content: center;
-	padding-top: 24px;
 }
 
 .error{
@@ -11,6 +10,9 @@
     padding-top: 12px;
 }
 
-.search-container{
-    margin-top: 40px;
+.header{
+    padding: 10px 0;
 }
+/* .search-container{
+    margin-top: 40px;
+} */
