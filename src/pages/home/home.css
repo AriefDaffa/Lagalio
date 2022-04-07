@@ -1,0 +1,37 @@
+.title{
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.link{
+    text-decoration: none;
+    font-size: 24px;
+    padding: 0 12px;
+}
+
+.link:hover{
+    color: #000;
+}
+
+.link-container{
+    color: white;
+    display: inline-block;
+    margin: 12px 0;
+    padding: 0.75rem 1rem;
+	border: 0;
+	border-radius: 0.3rem;
+    border: 1px solid #dadada;
+	text-decoration: none;
+	font-weight: 700;
+	font-size: 1rem;
+    line-height: 1.5;
+	font-family: "Helvetica Neue", Arial, sans-serif;
+	cursor: pointer;
+}
+
+.link-container:hover {
+	opacity: 0.85;
+    background-color: #dadada;
+    color: #000;
+}
