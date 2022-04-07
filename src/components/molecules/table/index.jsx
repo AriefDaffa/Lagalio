@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Header from '../../atomic/header';
 import TableBody from '../../atomic/table-body';
 import './table.css';
 
@@ -17,6 +18,7 @@ const Table = ({ data, selected, setSelected }) => {
 	
 	return (
 		<div className="table-container">
+			<Header size="title">List Track</Header>
 			<table>
 				<thead>
 					<tr>

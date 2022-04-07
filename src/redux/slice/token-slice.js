@@ -3,19 +3,24 @@ import { createSlice } from '@reduxjs/toolkit';
 export const tokenSlice = createSlice({
 	name: 'token',
 	initialState: {
-		token: window.location.hash
-			.substring(1, window.location.hash.length - 1)
-			.split('&')[0]
-			.split('=')[1],
+		token: localStorage.getItem('accessToken') || '',
 		expiredToken: false,
 	},
 	reducers: {
+		setToken: (state, action) => {
+			localStorage.setItem('accessToken', action.payload);
+			state.token = localStorage.getItem('accessToken');
+		},
+		removeToken: (state) => {
+			localStorage.removeItem('accessToken');
+			state.token = '';
+		},
 		resetToken: (state, action) => {
 			state.expiredToken = action.payload;
 		},
 	},
 });
 
-export const { resetToken } = tokenSlice.actions;
+export const { setToken, removeToken, resetToken } = tokenSlice.actions;
 
 export default tokenSlice.reducer;

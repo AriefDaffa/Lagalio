@@ -39,6 +39,9 @@ const Search = ({ setResult, setValue, value }) => {
 	};
 	return (
 		<div className="search-container">
+			<Header size="center">
+				Selanjutnya, cari track yang mau kamu masukkan kedalam playlist
+			</Header>
 			<Header size="title">Search Tracks</Header>
 			<form className="form" onSubmit={(e) => handleSubmit(e)}>
 				<input

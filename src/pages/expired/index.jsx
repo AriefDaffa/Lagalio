@@ -1,12 +1,14 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { resetToken } from '../../../redux/slice/token-slice';
-import Header from '../../atomic/header';
+import { Header } from '../../components';
+import { removeToken, resetToken } from '../../redux/slice/token-slice';
+import './expired.css';
 
 const Expired = () => {
 	const dispatch = useDispatch();
+
 	return (
-		<>
+		<div className="expired-container">
 			<Header size="title">Mohon Maaf! 😔</Header>
 			<Header size="center">token yang kamu gunakan sudah kadaluarsa</Header>
 			<Header size="center">
@@ -15,13 +17,13 @@ const Expired = () => {
 			<div
 				onClick={() => {
 					window.location = '/';
-					dispatch(resetToken(false));
+					dispatch(removeToken());
 				}}
 				className="button"
 			>
 				Kembali
 			</div>
-		</>
+		</div>
 	);
 };
 

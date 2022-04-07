@@ -1,8 +1,12 @@
 import React from 'react';
-import Header from '../../atomic/header';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { Header } from '../../components';
 import './login.css';
 
 const Login = () => {
+	const history = useHistory();
+	const token = useSelector((state) => state.token.token);
 	const generateRandomString = (length) => {
 		var text = '';
 		var possible =
@@ -17,13 +21,14 @@ const Login = () => {
 	const handleLogin = (e) => {
 		e.preventDefault();
 		var stateKey = 'spotify_auth_state';
-		var client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID ;
+		var client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 		var redirect_uri = 'http://localhost:3000/';
 
 		var state = generateRandomString(16);
 
 		localStorage.setItem(stateKey, state);
-		var scope = 'user-read-private user-read-email playlist-modify-private playlist-read-private';
+		var scope =
+			'user-read-private user-read-email playlist-modify-private playlist-read-private';
 
 		var url = 'https://accounts.spotify.com/authorize';
 		url += '?response_type=token';
@@ -34,6 +39,12 @@ const Login = () => {
 
 		window.location = url;
 	};
+
+	if (token) {
+		history.push({
+			pathname: '/create-playlist',
+		});
+	}
 
 	return (
 		<div className="login-container">

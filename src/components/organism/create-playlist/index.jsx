@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Header from '../../atomic/header';
-import ListPlaylist from '../../molecules/list-playlist';
 import PlaylistForm from '../../molecules/playlist-form';
 import Search from '../../molecules/search';
 import Table from '../../molecules/table';
@@ -24,17 +22,9 @@ const CreatePlaylist = () => {
 				/>
 				<Search setResult={setResult} setValue={setValue} value={value} />
 				{!result.length ? null : (
-					<>
-						<Header size="title">List Track</Header>
-						<Table
-							data={result}
-							selected={selected}
-							setSelected={setSelected}
-						/>
-					</>
+					<Table data={result} selected={selected} setSelected={setSelected} />
 				)}
 			</div>
-			<ListPlaylist />
 		</>
 	);
 };
