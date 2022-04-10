@@ -9,9 +9,9 @@ const Trending = () => {
 	const result = useSelector((state) => state.searchResult.trending);
 	const dispatch = useDispatch();
 	useEffect(() => {
-		let apiKey = process.env.REACT_APP_GIPHY_API_KEY;
-		let limit = 12;
-		let baseUrl = `https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&limit=${limit}`;
+		const apiKey = process.env.REACT_APP_GIPHY_API_KEY;
+		const limit = 12;
+		const baseUrl = `https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&limit=${limit}`;
 
 		fetch(baseUrl)
 			.then((res) => res.json())
@@ -19,7 +19,6 @@ const Trending = () => {
 				dispatch(insertTrendingResult(res.data));
 				console.log(result);
 			});
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (

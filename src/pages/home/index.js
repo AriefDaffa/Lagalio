@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { SearchBar } from '../../components';
 import { insertResult } from '../../redux/slice/result-slice';
 import Gif from '../../components/Gif';
-import { Link } from 'react-router-dom';
 import './home.css';
 
 const Home = () => {
@@ -16,10 +16,10 @@ const Home = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		let apiKey = process.env.REACT_APP_GIPHY_API_KEY;
-		let query = searchQuery;
-		let limit = 12;
-		let baseUrl = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&limit=${limit}&q=${query}`;
+		const apiKey = process.env.REACT_APP_GIPHY_API_KEY;
+		const query = searchQuery;
+		const limit = 12;
+		const baseUrl = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&limit=${limit}&q=${query}`;
 
 		fetch(baseUrl)
 			.then((res) => res.json())
@@ -40,7 +40,11 @@ const Home = () => {
 			</Link>
 
 			{value.map((data) => (
-				<Gif url={data.images.fixed_width.url} title={data.title} />
+				<Gif
+					url={data.images.fixed_width.url}
+					title={data.title}
+					key={data.id}
+				/>
 			))}
 		</>
 	);
