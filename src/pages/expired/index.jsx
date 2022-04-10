@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Header } from '../../components';
-import { removeToken, resetToken } from '../../redux/slice/token-slice';
+import { removeToken } from '../../redux/slice/token-slice';
 import './expired.css';
 
 const Expired = () => {

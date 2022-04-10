@@ -27,7 +27,6 @@ const Search = ({ setResult, setValue, value }) => {
 				.then((res) => {
 					setMessage('');
 					if (typeof res.error === 'object') {
-						// setExpiredToken(true);
 						dispatch(resetToken(true));
 					} else {
 						setResult(res.tracks.items);

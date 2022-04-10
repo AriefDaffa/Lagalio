@@ -10,7 +10,7 @@ const ListPlaylist = () => {
 	const token = useSelector((state) => state.token.token);
 
 	useEffect(() => {
-		let url = `https://api.spotify.com/v1`;
+		const url = `https://api.spotify.com/v1`;
 		const header = {
 			Authorization: 'Bearer ' + token,
 		};
@@ -20,13 +20,11 @@ const ListPlaylist = () => {
 			.then((res) => res.json())
 			.then((res) => {
 				if (typeof res.error === 'object') {
-					// setExpiredToken(true);
 					dispatch(resetToken(true));
 				} else {
 					setPlaylist(res);
 				}
 			});
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (

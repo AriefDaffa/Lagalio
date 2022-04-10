@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Header from '../../atomic/header';
 import TableBody from '../../atomic/table-body';
 import './table.css';
@@ -11,10 +11,6 @@ const Table = ({ data, selected, setSelected }) => {
 	const handleDelete = (uri) => {
 		setSelected(selected.filter((item) => item !== uri));
 	};
-
-	useEffect(() => {
-		// console.log(selected);
-	}, [selected]);
 	
 	return (
 		<div className="table-container">
