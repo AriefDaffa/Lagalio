@@ -3,8 +3,10 @@ import { useSelector } from 'react-redux';
 import Header from '../../atomic/header';
 import './playlist-form.css';
 
-const PlaylistForm = ({ playlistData, setPlaylistData, selected }) => {
+const PlaylistForm = ({ playlistData, setPlaylistData, selected, setSelected }) => {
 	const [message, setMessage] = useState('');
+	const [buttonLoading, setButtonLoading] = useState(false);
+
 	const token = useSelector((state) => state.token.token);
 
 	const handleChange = (e) => {
@@ -19,6 +21,7 @@ const PlaylistForm = ({ playlistData, setPlaylistData, selected }) => {
 		e.preventDefault();
 		if (playlistData.title.length > 10) {
 			if (selected.length) {
+				setButtonLoading(true);
 				let url = `https://api.spotify.com/v1`;
 				const header = {
 					Authorization: 'Bearer ' + token,
@@ -54,7 +57,10 @@ const PlaylistForm = ({ playlistData, setPlaylistData, selected }) => {
 					.then((res) => res.json())
 					.then((res) => {
 						console.log(res);
+						setSelected([]);
 						setMessage('Playlist berhasil terbuat!');
+						setButtonLoading(false);
+						
 					});
 			} else {
 				setMessage('⚠️ Belum ada lagu yang terpilih');
@@ -92,7 +98,12 @@ const PlaylistForm = ({ playlistData, setPlaylistData, selected }) => {
 						className="input description"
 						onChange={(e) => handleChange(e)}
 					/>
-					<input type="submit" className="submit-playlist" />
+					<input
+						type="submit"
+						className="submit-playlist"
+						disabled={buttonLoading ? true : false}
+						value={buttonLoading ? 'Loading...' : 'Submit'}
+					/>
 					{message && (
 						<div
 							className={

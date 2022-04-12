@@ -1,51 +1,56 @@
-.list-playlist-container{
+.gridContainer{
+    display: grid;
+    gap: 8px;
+    grid-template-columns: 50% 50%;
+    padding: 16px;
+}
+
+.listPlaylistContainer{
     margin-top: 50px;
-    min-height: 80vh;
+    min-height: 100vh;
+    padding: 16px;
 }
 
-.card-container{
-    display: flex;
-    justify-content: center;
-    margin: 16px;
+.cardContainer{
+    width: 100%;
 }
 
-.playlist-card{
+.playlistCard{
     border: 1px solid #dadada;
     display: flex;
     padding: 16px;
-    width: 100%;
     border-radius: 8px;
 }
 
-.card-image{
+.cardImage{
     height: 200px;
     width: 200px;
     object-fit: cover;
     border-radius: 4px;
 }
 
-.card-body{
+.cardBody{
     display: flex;
     flex-direction: column;
     padding-left: 16px;
     justify-content: flex-end;
 }
 
-.card-title{
-    font-size: 30px;
+.cardTitle{
+    font-size: 20px;
     font-weight: bold;
 }
 
-.card-content{
+.cardContent{
     font-weight: 300;
 }
 
-.play-button-container{
+.playButtonContainer{
     display: flex;
     justify-content: flex-end;
 }
 
-.play-button{
+.playButton{
     border: 1px solid #dadada;
     width: fit-content;
     padding: 2px 20px;
@@ -62,4 +67,19 @@
 
 .dot{
     padding: 0 4px;
+}
+
+.loadingContainer{
+    height: 30vh;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 768px) {
+    .gridContainer{
+        grid-template-columns: 100%;
+        
+    }
 }

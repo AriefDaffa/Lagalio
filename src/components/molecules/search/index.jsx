@@ -4,7 +4,7 @@ import { resetToken } from '../../../redux/slice/token-slice';
 import Header from '../../atomic/header';
 import './search.css';
 
-const Search = ({ setResult, setValue, value }) => {
+const Search = ({ setResult, setValue, value, setLoadingMessage }) => {
 	const [message, setMessage] = useState('');
 	const dispatch = useDispatch();
 	const token = useSelector((state) => state.token.token);
@@ -15,6 +15,7 @@ const Search = ({ setResult, setValue, value }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		setLoadingMessage('Loading...');
 		if (value.length > 0) {
 			let url = `https://api.spotify.com/v1/search?type=track&limit=10&q=${value}`;
 
@@ -26,12 +27,14 @@ const Search = ({ setResult, setValue, value }) => {
 				.then((res) => res.json())
 				.then((res) => {
 					setMessage('');
+					setLoadingMessage('');
 					if (typeof res.error === 'object') {
 						dispatch(resetToken(true));
 					} else {
 						setResult(res.tracks.items);
 					}
-				});
+				})
+				.catch(() => setLoadingMessage(''));
 		} else {
 			setMessage('⚠️ kolom tidak boleh kosong');
 		}
