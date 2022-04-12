@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container, Header, Navbar } from '../../components';
+import { Container, Header, Loading, Navbar } from '../../components';
 import { resetToken } from '../../redux/slice/token-slice';
-import './list-playlist.css';
+import styles from './list-playlist.module.css';
 
 const ListPlaylist = () => {
 	const [playlist, setPlaylist] = useState([]);
+	// const [loading, setLoading] = useState('');
 	const dispatch = useDispatch();
 	const token = useSelector((state) => state.token.token);
 
@@ -31,34 +32,46 @@ const ListPlaylist = () => {
 		<>
 			<Navbar />
 			<Container>
-				<div className="list-playlist-container">
+				<div className={styles.listPlaylistContainer}>
 					<Header size="center">
 						Lihat daftar playlist yang telah kamu buat
 					</Header>
 					<Header size="title">List Playlist</Header>
-					{typeof playlist.items !== 'undefined'
-						? playlist.items.map((data) => (
-								<div key={data.id} className="card-container">
-									<div className="playlist-card">
+					{typeof playlist.items !== 'undefined' ? (
+						<div className={styles.gridContainer}>
+							{playlist.items.map((data) => (
+								<div key={data.id} className={styles.cardContainer}>
+									<div className={styles.playlistCard}>
 										<img
 											src={data.images[0].url}
 											alt=""
-											className="card-image"
+											className={styles.cardImage}
 										/>
-										<div className="card-body">
-											<div className="card-header">Playlist</div>
-											<div className="card-title">{data.name}</div>
-											<div className="card-content">{data.description}</div>
-											<div className="flex">
-												<div className="author">{data.owner.display_name}</div>
-												<div className="dot">•</div>
-												<div className="tracks">{data.tracks.total} Tracks</div>
+										<div className={styles.cardBody}>
+											<div className={styles.cardHeader}>Playlist</div>
+											<div className={styles.cardTitle}>{data.name}</div>
+											<div className={styles.cardContent}>
+												{data.description}
+											</div>
+											<div className={styles.flex}>
+												<div className={styles.author}>
+													{data.owner.display_name}
+												</div>
+												<div className={styles.dot}>•</div>
+												<div className={styles.tracks}>
+													{data.tracks.total} Tracks
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-						  ))
-						: null}
+							))}
+						</div>
+					) : (
+						<div className={styles.loadingContainer}>
+							<Loading />
+						</div>
+					)}
 				</div>
 			</Container>
 		</>
