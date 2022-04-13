@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import Header from '../../atomic/header';
+import Header from '../../atomic/Header';
+import CustomInput from '../../atomic/CustomInput';
 import './playlist-form.css';
+import CustomButton from '../../atomic/CustomButton';
 
-const PlaylistForm = ({ playlistData, setPlaylistData, selected, setSelected }) => {
+const PlaylistForm = ({
+	playlistData,
+	setPlaylistData,
+	selected,
+	setSelected,
+}) => {
 	const [message, setMessage] = useState('');
 	const [buttonLoading, setButtonLoading] = useState(false);
 
@@ -60,7 +67,6 @@ const PlaylistForm = ({ playlistData, setPlaylistData, selected, setSelected }) 
 						setSelected([]);
 						setMessage('Playlist berhasil terbuat!');
 						setButtonLoading(false);
-						
 					});
 			} else {
 				setMessage('⚠️ Belum ada lagu yang terpilih');
@@ -78,32 +84,32 @@ const PlaylistForm = ({ playlistData, setPlaylistData, selected, setSelected }) 
 			</Header>
 			<div className="playlist-form">
 				<div className="label-input-container">
-					{/* <Header size="title">Create Playlist</Header> */}
-					<label htmlFor="title">Title </label>
-					<input
+					<CustomInput
 						id="title"
-						type="text"
-						className="input"
-						placeholder="Insert Title"
+						label="Title"
+						className="input-title"
 						value={playlistData.title}
 						onChange={(e) => handleChange(e)}
+						error={message.includes('10 karakter') ? true : false}
 					/>
-					<div className="minimum">*Minimal 10 karakter</div>
-					<label htmlFor="description">Description </label>
-					<textarea
+					{message.includes('10 karakter') && (
+						<div className="minimum">*Minimal 10 karakter</div>
+					)}
+					<CustomInput
 						id="description"
-						type="text"
-						placeholder="Insert Description"
+						label="Description"
+						multiline
+						rows={4}
 						value={playlistData.description}
-						className="input description"
 						onChange={(e) => handleChange(e)}
 					/>
-					<input
+					<CustomButton
 						type="submit"
 						className="submit-playlist"
-						disabled={buttonLoading ? true : false}
-						value={buttonLoading ? 'Loading...' : 'Submit'}
-					/>
+						disabled={buttonLoading}
+					>
+						{buttonLoading ? 'Loading...' : 'Submit'}
+					</CustomButton>
 					{message && (
 						<div
 							className={

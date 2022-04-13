@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Loading from '../../atomic/loading';
-import PlaylistForm from '../../molecules/playlist-form';
-import Search from '../../molecules/search';
-import CardContainer from '../../molecules/card-container';
+import Loading from '../../atomic/Loading';
+import PlaylistForm from '../../molecules/PlaylistForm';
+import Search from '../../molecules/Search';
+import CardContainer from '../../molecules/CardContainer';
 import './create-playlist.css';
 
 const CreatePlaylist = () => {
