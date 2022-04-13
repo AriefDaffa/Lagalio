@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -25,7 +26,7 @@ const Trending = () => {
 		<div>
 			<div className="title">Halaman Trending</div>
 			<Link to="/" className="link">
-				<div className="link-container">Kembali ke Homepage</div>
+				<Button variant="outlined">Kembali ke homepage</Button>
 			</Link>
 			{result.map((data) => (
 				<Gif

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { SearchBar } from '../../components';
 import { insertResult } from '../../redux/slice/result-slice';
 import Gif from '../../components/Gif';
+import { Button } from '@mui/material';
 import './home.css';
 
 const Home = () => {
@@ -33,10 +34,13 @@ const Home = () => {
 			<div className="title">Search Gifs</div>
 			<form onSubmit={handleSubmit}>
 				<SearchBar searchQuery={searchQuery} handleChange={handleChange} />
-				<input type="submit" />
+				<Button type="submit" variant="contained">
+					Submit
+				</Button>
 			</form>
 			<Link to="/trending" className="link">
-				<div className="link-container">Lihat halaman Trending</div>
+				{/* <div className="link-container">Lihat halaman Trending</div> */}
+				<Button variant="outlined">Lihat halaman Trending</Button>
 			</Link>
 
 			{value.map((data) => (
