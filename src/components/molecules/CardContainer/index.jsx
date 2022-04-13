@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../../atomic/header';
-import Card from '../../atomic/card';
+import Header from '../../atomic/Header';
+import Card from '../../atomic/Card';
 import styles from './card-container.module.css';
 
 const CardContainer = ({ data, selected, setSelected }) => {

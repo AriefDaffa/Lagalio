@@ -1,9 +1,11 @@
-export { default as Header } from './atomic/header/index';
-export { default as Container } from './atomic/container';
-export { default as Loading } from './atomic/loading';
+export { default as Header } from './atomic/Header/index';
+export { default as Container } from './atomic/Container';
+export { default as Loading } from './atomic/Loading';
+export { default as CustomButton } from './atomic/CustomButton';
+export { default as CustomInput } from './atomic/CustomInput';
 
-export { default as CardContainer } from './molecules/card-container';
-export { default as PlaylistForm } from './molecules/playlist-form';
-export { default as Navbar } from './molecules/navbar';
+export { default as CardContainer } from './molecules/CardContainer';
+export { default as PlaylistForm } from './molecules/PlaylistForm';
+export { default as Navbar } from './molecules/Navbar';
 
 export { default as CreatePlaylist } from './organism/create-playlist';
