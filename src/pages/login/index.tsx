@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Header } from '../../components';
+import { RootState } from '../../redux/store';
 import './login.css';
 
 const Login = () => {
 	const history = useHistory();
-	const token = useSelector((state) => state.token.token);
-	const generateRandomString = (length) => {
+	const token = useSelector((state: RootState) => state.token.token);
+	const generateRandomString = (length: number) => {
 		var text = '';
 		var possible =
 			'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -18,10 +19,10 @@ const Login = () => {
 		return text;
 	};
 
-	const handleLogin = (e) => {
+	const handleLogin = (e: FormEvent) => {
 		e.preventDefault();
 		var stateKey = 'spotify_auth_state';
-		var client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+		var client_id = String(process.env.REACT_APP_SPOTIFY_CLIENT_ID);
 		var redirect_uri = 'http://localhost:3000/';
 
 		var state = generateRandomString(16);
@@ -37,7 +38,7 @@ const Login = () => {
 		url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
 		url += '&state=' + encodeURIComponent(state);
 
-		window.location = url;
+		window.location.href = url;
 	};
 
 	if (token) {
@@ -48,8 +49,10 @@ const Login = () => {
 
 	return (
 		<div className="login-container">
-			<Header>Oops, sepertinya kamu belum login nih 😢</Header>
-			<Header size="title">Login Sekarang!</Header>
+			<Header size="title">Selamat Datang!</Header>
+			<Header size="center">
+				Sebelum melanjutkan, login terlebih dahulu yuk! 😆
+			</Header>
 			<div onClick={(e) => handleLogin(e)} className="button">
 				Klik disini untuk Login
 			</div>

@@ -62,4 +62,24 @@
     border: 1px solid #5dfa4f;
     background-color: #121413;
     color: white;
-} 
+}
+
+@media only screen and (max-width: 500px) {
+    .cardImage{
+        height: 150px;
+        width: 150px;
+    }
+    .title{
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .cardImage{
+        height: 100px;
+        width: 100px;
+    }
+    .title{
+        font-size: 18px;
+    }
+}

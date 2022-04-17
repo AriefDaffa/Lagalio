@@ -1,21 +1,29 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetToken } from '../../../redux/slice/token-slice';
+import { RootState } from '../../../redux/store';
 import CustomButton from '../../atomic/CustomButton';
 import CustomInput from '../../atomic/CustomInput';
 import Header from '../../atomic/Header';
 import styles from './search.module.css';
 
-const Search = ({ setResult, setValue, value, setLoadingMessage }) => {
+type props = {
+	setResult: Function;
+	setValue: Function;
+	value: string;
+	setLoadingMessage: Function;
+};
+
+const Search = ({ setResult, setValue, value, setLoadingMessage }: props) => {
 	const [message, setMessage] = useState('');
 	const dispatch = useDispatch();
-	const token = useSelector((state) => state.token.token);
+	const token = useSelector((state: RootState) => state.token.token);
 
-	const handleChange = (e) => {
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setValue(e.target.value);
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
 		if (value.length > 0) {
 			setLoadingMessage('Loading...');
@@ -43,10 +51,10 @@ const Search = ({ setResult, setValue, value, setLoadingMessage }) => {
 	};
 	return (
 		<div className={styles.searchContainer}>
-			<Header size="center">
-				Selanjutnya, cari track yang mau kamu masukkan kedalam playlist
-			</Header>
 			<Header size="title">Search Tracks</Header>
+			<Header size="center">
+				Cari track yang mau kamu masukkan kedalam playlist
+			</Header>
 			<form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
 				<div className={styles.searchInput}>
 					<CustomInput
@@ -54,7 +62,7 @@ const Search = ({ setResult, setValue, value, setLoadingMessage }) => {
 						type="text"
 						label="Search Tracks"
 						value={value}
-						onChange={(e) => handleChange(e)}
+						onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
 						error={message.includes('kosong') ? true : false}
 					/>
 				</div>
