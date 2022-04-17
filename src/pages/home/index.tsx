@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { SearchBar } from '../../components';
@@ -6,16 +6,27 @@ import { insertResult } from '../../redux/slice/result-slice';
 import Gif from '../../components/Gif';
 import { Button } from '@mui/material';
 import './home.css';
+import { RootState } from '../../redux/store';
+
+type dataGif = {
+	images:{
+		fixed_width:{
+			url: string;
+		}
+	},
+	title: string;
+	id: string;
+}
 
 const Home = () => {
 	const [searchQuery, setSearchQuery] = useState('');
-	const value = useSelector((state) => state.searchResult.result);
+	const value = useSelector((state: RootState) => state.searchResult.result);
 	const dispatch = useDispatch();
-	const handleChange = (e) => {
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setSearchQuery(e.target.value);
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
 		const apiKey = process.env.REACT_APP_GIPHY_API_KEY;
 		const query = searchQuery;
@@ -43,7 +54,7 @@ const Home = () => {
 				<Button variant="outlined">Lihat halaman Trending</Button>
 			</Link>
 
-			{value.map((data) => (
+			{value.map((data: dataGif) => (
 				<Gif
 					url={data.images.fixed_width.url}
 					title={data.title}

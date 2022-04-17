@@ -16,7 +16,10 @@
 	},
 	"plugins": ["react"],
 	"rules": {
-		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+		"react/jsx-filename-extension": [
+			1,
+			{ "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+		],
 		"no-tabs": 0,
 		"linebreak-style": 0,
 		"indent": "off",
