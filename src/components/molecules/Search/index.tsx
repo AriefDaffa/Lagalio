@@ -66,7 +66,11 @@ const Search = ({ setResult, setValue, value, setLoadingMessage }: props) => {
 						error={message.includes('kosong') ? true : false}
 					/>
 				</div>
-				<CustomButton type="submit" className={styles.buttonSearch}>
+				<CustomButton
+					type="submit"
+					className={styles.buttonSearch}
+					data-testid="search"
+				>
 					Search
 				</CustomButton>
 			</form>

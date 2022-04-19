@@ -3,7 +3,6 @@ import Header from '../../atomic/Header';
 import Card from '../../atomic/Card';
 import styles from './card-container.module.css';
 import CustomButton from '../../atomic/CustomButton';
-import styled from '@emotion/styled';
 
 type trackProps = {
 	data: object[];
@@ -39,7 +38,7 @@ const Tracks = ({ data, selected, setSelected, setStep }: trackProps) => {
 			<Header size="title">List Track</Header>
 			<Header size="center">Pilih track dibawah ini (Max. 10 tracks)</Header>
 			<div className={styles.cardGrid}>
-				{data.map((data, id) => (
+				{data?.map((data, id) => (
 					<Card
 						data={data}
 						key={id}

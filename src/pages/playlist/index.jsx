@@ -25,7 +25,8 @@ const ListPlaylist = () => {
 				} else {
 					setPlaylist(res);
 				}
-			});
+			})
+			.catch((err) => console.error(err));
 	}, []);
 
 	return (
@@ -49,7 +50,12 @@ const ListPlaylist = () => {
 										/>
 										<div className={styles.cardBody}>
 											<div className={styles.cardHeader}>Playlist</div>
-											<div className={styles.cardTitle}>{data.name}</div>
+											<div
+												className={styles.cardTitle}
+												data-testid="custom-element"
+											>
+												{data.name}
+											</div>
 											<div className={styles.cardContent}>
 												{data.description}
 											</div>
