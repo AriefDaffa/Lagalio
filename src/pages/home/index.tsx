@@ -9,14 +9,14 @@ import './home.css';
 import { RootState } from '../../redux/store';
 
 type dataGif = {
-	images:{
-		fixed_width:{
+	images: {
+		fixed_width: {
 			url: string;
-		}
-	},
+		};
+	};
 	title: string;
 	id: string;
-}
+};
 
 const Home = () => {
 	const [searchQuery, setSearchQuery] = useState('');
