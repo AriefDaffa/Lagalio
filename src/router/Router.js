@@ -1,8 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Home, Login } from '../pages';
-import ListPlaylist from '../pages/playlist';
+import { Home, ListPlaylist, Login, Playlist, Profile } from '../pages';
 import { setToken } from '../redux/slice/token-slice';
 import PrivateRoute from '../utils/PrivateRoute';
 
@@ -22,7 +21,9 @@ const Router = () => {
 		<BrowserRouter>
 			<Switch>
 				<PrivateRoute path="/create-playlist" component={Home} />
+				<PrivateRoute path="/playlist/:id" component={Playlist} />
 				<PrivateRoute path="/playlist" component={ListPlaylist} />
+				<PrivateRoute path="/profile" component={Profile} />
 				<Route path="/">
 					<Login />
 				</Route>

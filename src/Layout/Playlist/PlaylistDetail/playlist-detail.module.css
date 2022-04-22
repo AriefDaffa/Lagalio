@@ -1,0 +1,71 @@
+
+.parentContainer{
+    max-width: 1024px;
+	margin: 0 auto;
+}
+
+.container{
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height: 300px;
+}
+
+.image{
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    padding: 20px;
+}
+
+.playlistTitle{
+    font-size: 45px;
+    font-weight: bold;
+}
+
+.playlistDesc{
+    font-size: 15px;
+    font-weight: 300;
+    padding-bottom: 4px;
+}
+
+.flexComp{
+    display: flex;
+    padding-bottom: 10px;
+}
+
+.dot{
+    padding: 0 4px;
+}
+
+@media only screen and (max-width: 600px) {
+    .container{
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+    
+    .image{
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+        padding: 10px;
+    }
+
+    .playlist{
+        text-align: center;
+    }
+
+    .playlistTitle{
+        font-size: 35px;
+        text-align: center;
+    }
+    
+    .playlistDesc{
+        text-align: center;
+    }
+
+    .flexComp{
+        justify-content: center;
+    }
+}
