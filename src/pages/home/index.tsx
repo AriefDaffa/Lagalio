@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
-import {
-	Container,
-	Loading,
-	Navbar,
-	PlaylistForm,
-	Search,
-	Tracks,
-} from '../../components';
+import { Container, Loading, Navbar } from '../../components';
+import { PlaylistForm, Search, Tracks } from '../../Layout/Home';
 import './home.css';
 
 type playlistData = {

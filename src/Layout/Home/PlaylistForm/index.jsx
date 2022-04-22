@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import Header from '../../atomic/Header';
-import CustomInput from '../../atomic/CustomInput';
+import Header from '../../../components/Header';
+import CustomInput from '../../../components/CustomInput';
+import CustomButton from '../../../components/CustomButton';
 import './playlist-form.css';
-import CustomButton from '../../atomic/CustomButton';
 
 const PlaylistForm = ({
 	playlistData,

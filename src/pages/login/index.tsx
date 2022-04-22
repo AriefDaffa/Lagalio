@@ -5,6 +5,8 @@ import { Header } from '../../components';
 import { RootState } from '../../redux/store';
 import './login.css';
 
+import logo from '../../assets/icon.png';
+
 const Login = () => {
 	const history = useHistory();
 	const token = useSelector((state: RootState) => state.token.token);
@@ -49,9 +51,13 @@ const Login = () => {
 
 	return (
 		<div className="login-container">
-			<Header size="title">Selamat Datang!</Header>
+			<div className="logo-container">
+				<img src={logo} alt="" className="logo-home" />
+			</div>
 			<Header size="center">
-				Sebelum melanjutkan, login terlebih dahulu yuk! 😆
+				<div className="logo-description">
+					Membuat playlist tidak pernah semudah ini
+				</div>
 			</Header>
 			<div onClick={(e) => handleLogin(e)} className="button">
 				Klik disini untuk Login

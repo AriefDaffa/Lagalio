@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Header from '../../atomic/Header';
-import Card from '../../atomic/Card';
+import Header from '../../../components/Header';
+import Card from '../../../components/Card';
 import styles from './card-container.module.css';
-import CustomButton from '../../atomic/CustomButton';
+import CustomButton from '../../../components/CustomButton';
 
 type trackProps = {
 	data: object[];

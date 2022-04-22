@@ -1,87 +1,69 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container, Header, Loading, Navbar } from '../../components';
+import { useParams } from 'react-router-dom';
+import { Container, Loading, Navbar } from '../../components';
 import { resetToken } from '../../redux/slice/token-slice';
-import styles from './list-playlist.module.css';
+import { PlaylistDetail, PlaylistTracks } from '../../Layout/Playlist';
 
-const ListPlaylist = () => {
-	const [playlist, setPlaylist] = useState([]);
-	// const [loading, setLoading] = useState('');
+const index = () => {
+	let { id } = useParams();
+	const [data, setData] = useState({});
 	const dispatch = useDispatch();
 	const token = useSelector((state) => state.token.token);
 
 	useEffect(() => {
-		const url = `https://api.spotify.com/v1`;
-		const header = {
-			Authorization: 'Bearer ' + token,
-		};
-		fetch(`${url}/me/playlists`, {
-			headers: header,
-		})
-			.then((res) => res.json())
-			.then((res) => {
-				if (typeof res.error === 'object') {
-					dispatch(resetToken(true));
-				} else {
-					setPlaylist(res);
-				}
+		const request = async () => {
+			const url = `https://api.spotify.com/v1`;
+			const header = {
+				Authorization: 'Bearer ' + token,
+			};
+			await fetch(`${url}/playlists/${id}`, {
+				headers: header,
 			})
-			.catch((err) => console.error(err));
+				.then((res) => res.json())
+				.then((res) => {
+					if (typeof res.error === 'object') {
+						dispatch(resetToken(true));
+					} else {
+						setData(res);
+					}
+				})
+				.catch((err) => console.error(err));
+		};
+		request();
 	}, []);
 
 	return (
 		<>
 			<Navbar />
-			<Container>
-				<div className={styles.listPlaylistContainer}>
-					<Header size="center">
-						Lihat daftar playlist yang telah kamu buat
-					</Header>
-					<Header size="title">List Playlist</Header>
-					{typeof playlist.items !== 'undefined' ? (
-						<div className={styles.gridContainer}>
-							{playlist.items.map((data) => (
-								<div key={data.id} className={styles.cardContainer}>
-									<div className={styles.playlistCard}>
-										<img
-											src={data.images[0].url}
-											alt=""
-											className={styles.cardImage}
-										/>
-										<div className={styles.cardBody}>
-											<div className={styles.cardHeader}>Playlist</div>
-											<div
-												className={styles.cardTitle}
-												data-testid="custom-element"
-											>
-												{data.name}
-											</div>
-											<div className={styles.cardContent}>
-												{data.description}
-											</div>
-											<div className={styles.flex}>
-												<div className={styles.author}>
-													{data.owner.display_name}
-												</div>
-												<div className={styles.dot}>•</div>
-												<div className={styles.tracks}>
-													{data.tracks.total} Tracks
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							))}
-						</div>
-					) : (
-						<div className={styles.loadingContainer}>
-							<Loading />
-						</div>
-					)}
+			{typeof data.images === 'undefined' ? (
+				<div
+					style={{
+						height: '100vh',
+						display: 'flex',
+						flexDirection: 'column',
+						justifyContent: 'center',
+						background:
+							'linear-gradient(179.92deg, #273053 0.07%, #242035 134.98%)',
+					}}
+				>
+					<Loading />
 				</div>
-			</Container>
+			) : (
+				<div
+					style={{
+						minHeight: '100vh',
+						background:
+							'linear-gradient(179.92deg, #273053 0.07%, #242035 134.98%)',
+					}}
+				>
+					<PlaylistDetail data={data} />
+					<PlaylistTracks data={data} />
+					{/* <ButtonSection /> */}
+				</div>
+			)}
 		</>
 	);
 };
 
-export default ListPlaylist;
+export default index;

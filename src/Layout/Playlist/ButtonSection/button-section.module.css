@@ -1,0 +1,15 @@
+.parentContainer{
+    max-width: 1024px;
+	margin: 0 auto;
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.buttonNext{
+    width: 500px;
+    height: 40px;
+}

@@ -2,9 +2,9 @@ import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetToken } from '../../../redux/slice/token-slice';
 import { RootState } from '../../../redux/store';
-import CustomButton from '../../atomic/CustomButton';
-import CustomInput from '../../atomic/CustomInput';
-import Header from '../../atomic/Header';
+import CustomButton from '../../../components/CustomButton';
+import CustomInput from '../../../components/CustomInput';
+import Header from '../../../components/Header';
 import styles from './search.module.css';
 
 type props = {
